@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main() {
+    int num, remainder;
+    long long product = 1;
+    int has_odd = 0;
+
+    printf("Enter an integer: ");
+    if (scanf("%d", &num) != 1) {
+        printf("Invalid input.\n");
+        return 1;
+    }
+
+    int original = num;
+    int temp = (num < 0) ? -num : num;
+
+    if (temp == 0) {
+        has_odd = 0;
+    }
+
+    while (temp > 0) {
+        remainder = temp % 10;
+        if (remainder % 2 != 0) {
+            product *= remainder;
+            has_odd = 1;
+        }
+        temp /= 10;
+    }
+
+    if (has_odd) {
+        printf("Product of odd digits of %d = %lld\n", original, product);
+    } else {
+        printf("No odd digits found in %d.\n", original);
+    }
+
+    return 0;
+}
