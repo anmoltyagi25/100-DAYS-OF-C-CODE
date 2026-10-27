@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int num, original, first_digit, last_digit, digits, swapped_num;
+
+    printf("Enter an integer: ");
+    if (scanf("%d", &num) != 1) {
+        printf("Invalid input.\n");
+        return 1;
+    }
+
+    original = num;
+    int temp = (num < 0) ? -num : num;
+
+    if (temp < 10) {
+        printf("Swapped number: %d\n", original);
+        return 0;
+    }
+
+    last_digit = temp % 10;
+    digits = (int)log10(temp);
+    
+    int first_digit_temp = temp;
+    while (first_digit_temp >= 10) {
+        first_digit_temp /= 10;
+    }
+    first_digit = first_digit_temp;
+
+    int power_value = (int)round(pow(10, digits));
+    
+    swapped_num = temp - (first_digit * power_value) - last_digit;
+    swapped_num = swapped_num + (last_digit * power_value) + first_digit;
+
+    if (num < 0) {
+        swapped_num = -swapped_num;
+    }
+
+    printf("Swapped number: %d\n", swapped_num);
+
+    return 0;
+}
