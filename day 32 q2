@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main() {
+    long long num, temp;
+    int digitCounts[10] = {0};
+    int i, maxCount = 0, mostFrequentDigit = 0;
+
+    if (scanf("%lld", &num) != 1) {
+        return 1;
+    }
+
+    if (num < 0) {
+        num = -num;
+    }
+
+    if (num == 0) {
+        digitCounts[0] = 1;
+    } else {
+        temp = num;
+        while (temp > 0) {
+            int digit = temp % 10;
+            digitCounts[digit]++;
+            temp /= 10;
+        }
+    }
+
+    for (i = 0; i < 10; i++) {
+        if (digitCounts[i] > maxCount) {
+            maxCount = digitCounts[i];
+            mostFrequentDigit = i;
+        }
+    }
+
+    printf("%d\n", mostFrequentDigit);
+
+    return 0;
+}
