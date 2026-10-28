@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int main() {
+    char str[1000];
+    int i = 0, start = 0, len = 0;
+    int maxStart = 0, maxLen = 0;
+
+    if (fgets(str, sizeof(str), stdin) == NULL) {
+        return 1;
+    }
+
+    while (str[i] != '\0') {
+        if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n' && str[i] != '\0') {
+            if (len == 0) {
+                start = i;
+            }
+            len++;
+        } else {
+            if (len > maxLen) {
+                maxLen = len;
+                maxStart = start;
+            }
+            len = 0;
+        }
+        i++;
+    }
+
+    if (len > maxLen) {
+        maxLen = len;
+        maxStart = start;
+    }
+
+    if (maxLen > 0) {
+        for (i = maxStart; i < maxStart + maxLen; i++) {
+            printf("%c", str[i]);
+        }
+        printf("\n");
+    } else {
+        printf("No word found\n");
+    }
+
+    return 0;
+}
