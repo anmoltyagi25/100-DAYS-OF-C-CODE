@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+int main() {
+    int day, year;
+
+    if (scanf("%d/04/%d", &day, &year) != 2) {
+        return 1;
+    }
+
+    printf("%02d-Apr-%04d\n", day, year);
+
+    return 0;
+}
