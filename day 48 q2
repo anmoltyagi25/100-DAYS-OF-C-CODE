@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    char str[1000];
+    int i = 0, start = 0, end, j;
+
+    if (fgets(str, sizeof(str), stdin) == NULL) {
+        return 1;
+    }
+
+    while (str[i] != '\0') {
+        if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\0') {
+            end = i - 1;
+            for (j = end; j >= start; j--) {
+                printf("%c", str[j]);
+            }
+            if (str[i] != '\n' && str[i] != '\0') {
+                printf("%c", str[i]);
+            }
+            start = i + 1;
+        }
+        i++;
+    }
+    printf("\n");
+
+    return 0;
+}
