@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+int main() {
+    char str[100];
+    int len = 0, i, lastSpace = -1;
+
+    if (fgets(str, sizeof(str), stdin) == NULL) {
+        return 1;
+    }
+
+    while (str[len] != '\0') {
+        len++;
+    }
+    if (len > 0 && str[len - 1] == '\n') {
+        str[len - 1] = '\0';
+        len--;
+    }
+
+    for (i = len - 1; i >= 0; i--) {
+        if (str[i] == ' ' || str[i] == '\t') {
+            lastSpace = i;
+            break;
+        }
+    }
+
+    if (lastSpace == -1) {
+        printf("%s\n", str);
+        return 0;
+    }
+
+    i = 0;
+    while (str[i] == ' ' || str[i] == '\t') {
+        i++;
+    }
+    if (i < lastSpace) {
+        printf("%c. ", str[i]);
+    }
+
+    while (i < lastSpace) {
+        if ((str[i] == ' ' || str[i] == '\t') && (str[i + 1] != ' ' && str[i + 1] != '\t' && i + 1 < lastSpace)) {
+            printf("%c. ", str[i + 1]);
+        }
+        i++;
+    }
+
+    printf("%s\n", &str[lastSpace + 1]);
+
+    return 0;
+}
