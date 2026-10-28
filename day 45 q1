@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    char str[1000];
+    char target;
+    int i = 0, count = 0;
+
+    if (fgets(str, sizeof(str), stdin) == NULL) {
+        return 1;
+    }
+
+    if (scanf("%c", &target) != 1) {
+        return 1;
+    }
+
+    while (str[i] != '\0') {
+        if (str[i] == target) {
+            count++;
+        }
+        i++;
+    }
+
+    printf("%d\n", count);
+
+    return 0;
+}
