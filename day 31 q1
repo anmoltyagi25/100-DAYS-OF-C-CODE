@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, target, foundIndex = -1;
+
+    if (scanf("%d", &n) != 1 || n <= 0) {
+        return 1;
+    }
+
+    int arr[n];
+
+    for (i = 0; i < n; i++) {
+        if (scanf("%d", &arr[i]) != 1) {
+            return 1;
+        }
+    }
+
+    if (scanf("%d", &target) != 1) {
+        return 1;
+    }
+
+    for (i = 0; i < n; i++) {
+        if (arr[i] == target) {
+            foundIndex = i;
+            break;
+        }
+    }
+
+    if (foundIndex != -1) {
+        printf("Element found at index: %d\n", foundIndex);
+    } else {
+        printf("Element not found\n");
+    }
+
+    return 0;
+}
