@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int findCeil(int arr[], int size, int x) {
+    int low = 0, high = size - 1;
+    int ansIndex = -1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (arr[mid] >= x) {
+            ansIndex = mid;
+            high = mid - 1;
+        } else {
+            low = mid + 1;
+        }
+    }
+    return ansIndex;
+}
+
+int main() {
+    int n, x;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d sorted elements: ", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter the value of x: ");
+    scanf("%d", &x);
+
+    int ceilIndex = findCeil(arr, n, x);
+    printf("%d\n", ceilIndex);
+
+    return 0;
+}
