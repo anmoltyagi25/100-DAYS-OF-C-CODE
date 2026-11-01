@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    if (n <= 1) {
+        printf("No repeated element possible.\n");
+        return 0;
+    }
+
+    int *seen = (int *)calloc(n + 1, sizeof(int));
+    int currentElement;
+    int repeatedElement = -1;
+
+    printf("Enter %d elements: ", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &currentElement);
+        
+        if (repeatedElement == -1) {
+            if (seen[currentElement] == 1) {
+                repeatedElement = currentElement;
+            } else {
+                seen[currentElement] = 1;
+            }
+        }
+    }
+
+    free(seen);
+
+    if (repeatedElement != -1) {
+        printf("%d\n", repeatedElement);
+    } else {
+        printf("No repeated element found.\n");
+    }
+
+    return 0;
+}
