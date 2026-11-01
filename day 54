@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <math.h>
+
+int findPivotInteger(int n) {
+    int totalSum = (n * (n + 1)) / 2;
+    int x = (int)sqrt(totalSum);
+
+    if (x * x == totalSum) {
+        return x;
+    }
+    
+    return -1;
+}
+
+int main() {
+    int n;
+
+    printf("Enter a positive integer n: ");
+    scanf("%d", &n);
+
+    int pivot = findPivotInteger(n);
+    printf("%d\n", pivot);
+
+    return 0;
+}
