@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char s[1000];
+
+    printf("Enter a string: ");
+    if (fgets(s, sizeof(s), stdin) == NULL) {
+        return 0;
+    }
+
+    int len = strlen(s);
+    if (len > 0 && s[len - 1] == '\n') {
+        s[len - 1] = '\0';
+        len--;
+    }
+
+    int lastPos[256];
+    for (int i = 0; i < 256; i++) {
+        lastPos[i] = -1;
+    }
+
+    int maxLength = 0;
+    int start = 0;
+
+    for (int i = 0; i < len; i++) {
+        unsigned char currentChar = (unsigned char)s[i];
+
+        if (lastPos[currentChar] >= start) {
+            start = lastPos[currentChar] + 1;
+        }
+
+        lastPos[currentChar] = i;
+
+        int currentLength = i - start + 1;
+        if (currentLength > maxLength) {
+            maxLength = currentLength;
+        }
+    }
+
+    printf("%d\n", maxLength);
+
+    return 0;
+}
